@@ -64,7 +64,7 @@ function isCollection(value) {
     } else if(value instanceof Date) {
         return false;
     } else if(typeof value === "object") {
-        return false;
+        return true;
     } else {
         return false;
     }
