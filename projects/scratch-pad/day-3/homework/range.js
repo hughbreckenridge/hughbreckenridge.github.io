@@ -23,8 +23,15 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
+    var newArr = [];
+    for (let i = start; i <= end; i++){
+        newArr.push(i);
+    }
+    if (start < end) {
+        return newArr;
+    } else {
+        return newArr.split("").reverse.join("");
+    }
     
     
     // YOUR CODE GOES ABOVE HERE //
