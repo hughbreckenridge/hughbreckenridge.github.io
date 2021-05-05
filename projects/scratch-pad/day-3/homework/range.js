@@ -23,15 +23,21 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    var newArr = [];
-    for (let i = start; i <= end; i++){
-        newArr.push(i);
+     var newArr = [];  //create an empty array to hold the range we want
+    if (start < end) {  //run a for loop that produces the array only if the starting number i less than the end number
+      for (let i = start; i <= end; i++){//loop over the range
+        newArr.push(i);//push the new values to the new array
+      }
+      
+      return newArr;//return the new array
     }
-    if (start < end) {
-        return newArr;
-    } else {
-        return newArr.split("").reverse.join("");
+    if (start > end) { //run a loop that produces the array only when the start number is higher than the end number
+      for (let i = start; i >= end; i--) {//begin the loop at the start number and iterate down to the end number
+        newArr.push(i);//push the new values into the array
+      }
+    return newArr; //return the array in reverse order
     }
+    
     
     
     // YOUR CODE GOES ABOVE HERE //
