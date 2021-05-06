@@ -79,10 +79,10 @@ if (string[0] == char.toLowerCase()) {
     return(true);
 } else if (string[0] == char.toUpperCase()){
     return(true);
-}else {
+} else {                                                      
     return(false);
 }
-    
+                                                              
     // YOUR CODE ABOVE HERE //
 }
 
@@ -176,8 +176,6 @@ if (stringOne.length > stringTwo.length) {
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 return (stringTwo.localeCompare(stringOne));
-
-
     // YOUR CODE ABOVE HERE //
 }
 
@@ -195,7 +193,6 @@ return (stringOne.localeCompare(stringTwo));
 
     // YOUR CODE ABOVE HERE //
 }
-
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&

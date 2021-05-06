@@ -50,13 +50,48 @@ function makeContactList() {
      */
     var contacts = [];
     
+    
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+//add key of addContact and value pair that is a function taking contact and returning code that pushes contact into contacts
+        addContact: function(contact) { 
+            contacts.push(contact);
+        },
+//add key of findContact and value pair that is a function that loops over the whole contacts array and retuns that contact or undefined if it cant be found
+        findContact: function(fullName) {
+            for (var i = 0; i < contacts.length; i++) {
+                if(fullName === contacts[i].nameFirst + " " + contacts[i].nameLast) {
+                    return contacts[i];
+                }
+            }
+            return undefined;
+        },
+//add key of removeContact and value pair that is a function that loops over contacts and if a match is found remove that object
+        removeContact: function(contact) {
+            for (var i = 0; i < contacts.length; i++) {
+                if (contact === contacts[i]) {
+                    return contacts.splice(i, 1);
+                }
+            }
+        },
+//add a key called printAllContactNames that has a key of a function that returns a formattted string with all the objects in contacts
+        printAllContactNames: function() {
+            var all = []; // create an array that will recieve the result of the function
+            for (var i = 0; i < contacts.length; i++) {//loop over the contacts array
+                var fullName = contacts[i]["nameFirst"] + " " + contacts[i]["nameLast"];//concatenate firstName and lastName separated by a " " in each key
+                if (i === contacts.length - 1) {//if we are not on the last index of contacts 
+                    all += fullName; //push fullName of that key into all
+                } else {
+                    all += fullName + '\n'; //if we arent on the last key push fullName into all and start a new line
+                }
+                }
+            return all; //return the all array
         }
     }
-}
+    }
 
 
 
