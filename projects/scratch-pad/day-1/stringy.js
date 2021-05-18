@@ -175,7 +175,7 @@ if (stringOne.length > stringTwo.length) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-return (stringOne.localeCompare(stringTwo));
+return (stringTwo.localeCompare(stringOne));
     // YOUR CODE ABOVE HERE //
 }
 
@@ -189,7 +189,7 @@ return (stringOne.localeCompare(stringTwo));
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-return (stringTwo.localeCompare(stringOne));
+return (stringOne.localeCompare(stringTwo));
 
     // YOUR CODE ABOVE HERE //
 }

@@ -51,7 +51,7 @@ _.typeOf = function(val) {
        return "null";
    }
    return typeof(val);
-}
+};
 
 /** _.first
 * Arguments:
@@ -300,7 +300,18 @@ _.partition = function(array, func) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(collection, func) {
+    var newArr = [];
+    //use each to loop through collections
+  _.each(collection, function(value, i, collection) {
+      //call the function
+    func(value, i, collection)
+    //push the elements after the function has been called inot the new array
+    newArr.push(func(value, i, collection));
+  });
+//return new array
+  return newArr;
+};
 
 /** _.pluck
 * Arguments:
@@ -312,6 +323,12 @@ _.partition = function(array, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+_.pluck = function(array, key) {
+    return array.map(function(object){
+        return object[key];
+    });
+};
+
 
 
 /** _.every
@@ -334,8 +351,36 @@ _.partition = function(array, func) {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
-
+_.every = function(collection, action){
+       if(action === undefined){
+        for (let i = 0; i < collection.length; i++){
+            if(collection[i] === false){
+                return false;
+            }
+        }
+        return true;
+    }
+    if(Array.isArray(collection)){
+        // loop through array
+        for (let i = 0; i < collection.length; i++){
+            // call function on each index
+            if(!(action(collection[i], i, collection))){
+                return false;
+            }
+        }
+        return true;
+    }
+    else if (typeof collection === 'object'){
+        // loop through object
+        for (var key in collection){
+            // call function on each property
+            if(!(action(collection[key], key, collection))){
+                return false;
+            }
+        }
+    return true;
+    }
+};
 /** _.some
 * Arguments:
 *   1) A collection
@@ -356,7 +401,37 @@ _.partition = function(array, func) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = function(collection, action){
+    if(action === undefined){
+        for (let i = 0; i < collection.length; i++){
+            if(collection[i] === true){
+                return true;
+            }
+        }
+        return false;
+    }
+    if(Array.isArray(collection)){
+        // loop through array
+        for (let i = 0; i < collection.length; i++){
+            // call function on each index
+            if((action(collection[i], i, collection))){
+                return true;
+            }
+        }
+        return false;
+    }
+    else if (typeof collection === 'object'){
+        // loop through object
+        for (var key in collection){
+            // call function on each property
+            if((action(collection[key], key, collection))){
+                return true;
+            }
+        }
+    return false;
+    }
+};
+    
 
 /** _.reduce
 * Arguments:
@@ -377,6 +452,25 @@ _.partition = function(array, func) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed) {
+    //check if the seed exists or isn't undefined
+    if (seed !== undefined) {
+        //loop through the given array
+        for (var i = 0; i < array.length; i++) {
+            //reassign seed to be equal to the function call
+            seed = func(seed, array[i], i);
+        }
+        return seed;
+    } else { 
+        //if no seed is given the first array value is the seed
+        seed = array[0];
+        for (var i = 1; i < array.length; i++){
+            seed = func(seed, array[i], i);
+        }
+        return seed;
+    }
+};
+
 
 /** _.extend
 * Arguments:
@@ -392,6 +486,14 @@ _.partition = function(array, func) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object1, ...object2) {
+    var newObject = Object.assign(object1, ...object2);
+    return newObject;
+};
+
+
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
